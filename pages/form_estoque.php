@@ -40,11 +40,6 @@
 
     </div>
     <script type="text/javascript">
-        function apagaFeedBack(id, tempo) {
-            setTimeout(function() {
-                document.getElementById(id).remove();
-            }, tempo);
-        }
         apagaFeedBack("feedback", 2500);
     </script>
 </body>
