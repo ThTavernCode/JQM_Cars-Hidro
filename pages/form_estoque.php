@@ -39,9 +39,6 @@
         </div>
 
     </div>
-    <script type="text/javascript">
-        apagaFeedBack("feedback", 2500);
-    </script>
 </body>
 
 </html>
