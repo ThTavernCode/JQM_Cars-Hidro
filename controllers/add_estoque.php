@@ -13,7 +13,7 @@ if (isset($_POST['nome_produto'])) {
     if ($conn->query($sql) == TRUE) {
         echo "<p>Produto adicionado ao estoque com sucesso!</p>";
         $conn->close();
-        $_SESSION['estoque']='Item Adicionado com Sucesso';
+        $_SESSION['feedback']='Item Adicionado com Sucesso';
         header("Location:../pages/form_estoque.php");
     } else {
         echo "<p>Erro ao adicionar produto ao estoque: " . $conn->error . "</p>";
