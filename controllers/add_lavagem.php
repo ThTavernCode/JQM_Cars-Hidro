@@ -13,11 +13,13 @@ $data_lavagem = $_POST['data_lavagem'];
 $sql = "INSERT INTO lavagens (Nome_Cliente, Preço_da_lavagem, Desconto, Forma_de_pagamento, Produtos_Gastos, Quantidade_gasta_de_produtos, Data_da_lavagem)
         VALUES ('$nome_cliente', '$preco_lavagem', '$desconto', '$forma_pagamento', '$produtos_gastos', '$quantidade_produtos', '$data_lavagem')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Lavagem adicionada com sucesso!";
+if ($conn->query($sql) == TRUE) {
+    $_SESSION['feedback']='Lavagem adicionada com sucesso!';
+    $_SESSION['status']='ok';
 } else {
-    echo "Erro ao adicionar lavagem: " . $conn->error;
+    $_SESSION['feedback']="Erro ao adicionar lavagem: " . $conn->error;
 }
-
 // Fecha a conexão com o banco de dados
 $conn->close();
+header("Location:../pages/form_lavagem.php");
+

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -10,10 +11,9 @@
 <body>
     <div class="container py-2 m-5">
 
-        <div class="row ">
+        <div class="row">
             <div class="col-12 formulario pt-3 centro">
                 <h2 class="text-center text-dark">Adicionar Manutenção</h2>
-                <hr>
                 <form action="../controllers/add_manutencao.php" method="POST" class="form-group p-2">
                     <label for="servico">Serviço:</label>
                     <input type="text" id="servico" name="servico" required class="form-control">
@@ -29,7 +29,14 @@
 
                     <label for="custo_servico">Custo do Serviço (R$):</label>
                     <input type="number" id="custo_servico" name="custo_servico" step="0.01" required class="form-control">
-
+                    <div class='mt-2' id='feedback'>
+                        <?php 
+                        if(isset($_SESSION['feedback'])) {
+                           if($_SESSION['status']=='ok'){echo "<p class='alert alert-success'>" . $_SESSION['feedback'] . "</p>";} else {echo "<p class='alert alert-danger'>" . $_SESSION['feedback'] . "</p>";}
+                            unset($_SESSION['feedback']);
+                        } 
+                        ?>
+                    </div>
                     <hr>
                     <div class="col-12 align-middle p-2 d-flex justify-content-between">
                         <input type="submit" value="Registrar Manutenção" class="btn btn-jqm col-7 my-auto py-4 btn-lg">
@@ -39,6 +46,11 @@
             </div>
         </div>
     </div>
+   
+    <script type="text/javascript">
+        <?php include_once("../public/feedback.js"); ?>
+            apagaFeedBack('feedback', 2700);
+    </script>
 </body>
 
 </html>

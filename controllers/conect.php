@@ -1,4 +1,5 @@
 <?php 
+session_start();
 // Conexão com o banco de dados (substitua com suas credenciais)
 $servername = "localhost";
 $username = "root";  // Substitua com seu usuário

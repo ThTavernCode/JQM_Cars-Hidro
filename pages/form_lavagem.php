@@ -13,10 +13,10 @@ session_start();
 <body>
 
     <div class="container py-2 my-auto">
-    <h2 class="text-center text-light">Adicionar Nova Lavagem</h2>
         <div class="row">
             <div class="col-12 formulario pt-3 centro">
-                <form action="routers/add_lavagem.php" method="POST" class="form-group p-2">
+                <form action="../controllers/add_lavagem.php" method="POST" class="form-group p-2">
+                <h2 class="text-center text-dark">Adicionar Nova Lavagem</h2>
                     <label for="nome_cliente_lavagem">Nome do Cliente:</label>
                     <input type="text" id="nome_cliente_lavagem" name="nome_cliente" required class="form-control">
 
@@ -38,17 +38,28 @@ session_start();
 
                     <label for="data_lavagem">Data da Lavagem:</label>
                     <input type="date" id="data_lavagem" name="data_lavagem" required class="form-control">
-
+                    <div class='mt-2' id='feedback'>
+                        <?php 
+                        if(isset($_SESSION['feedback'])) {
+                           if($_SESSION['status']=='ok'){echo "<p class='alert alert-success'>" . $_SESSION['feedback'] . "</p>";} else {echo "<p class='alert alert-danger'>" . $_SESSION['feedback'] . "</p>";}
+                            unset($_SESSION['feedback']);
+                        } 
+                        ?>
+                    </div>
                     <hr>
 
                     <div class="col-12 align-middle p-2 d-flex justify-content-between">
-                        <input type="button" value="Adicionar Lavagem" class="btn btn-jqm col-5 my-auto py-4 btn-lg">
+                        <input type="submit" value="Adicionar Lavagem" class="btn btn-jqm col-6 my-auto py-4 btn-lg">
                         <a href="index.php" class="btn btn-jqm col-5 my-auto py-4 btn-lg">Voltar</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        <?php include_once("../public/feedback.js"); ?>
+            apagaFeedBack('feedback', 2700);
+    </script>
 
 </body>
 

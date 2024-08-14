@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once("conect.php");
 // Se o formulário para adicionar estoque for enviado
 if (isset($_POST['nome_produto'])) {
@@ -11,14 +10,13 @@ if (isset($_POST['nome_produto'])) {
             VALUES ('$nome_produto', '$quantidade_produto', '$custo_produto')";
 
     if ($conn->query($sql) == TRUE) {
-        echo "<p>Produto adicionado ao estoque com sucesso!</p>";
-        $conn->close();
         $_SESSION['feedback']='Item Adicionado com Sucesso';
-        header("Location:../pages/form_estoque.php");
+        $_SESSION['status']='ok';
     } else {
-        echo "<p>Erro ao adicionar produto ao estoque: " . $conn->error . "</p>";
-        $conn->close();
+        $_SESSION['feedback']="Erro ao adicionar produto ao estoque: " . $conn->error;
     }
 }
 // Fecha a conexão com o banco de dados
+$conn->close();
+header("Location:../pages/form_estoque.php");
 ?>
